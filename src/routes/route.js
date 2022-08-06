@@ -8,9 +8,9 @@ const router = express.Router();
 
 
 router.get('/test-me', function (req, res) {
-    res.send('Welcome to my application. I am  FARINE KHAN and a part of FunctionUp Plutonium cohort')
+    res.send('hii,i am farine khan')
     a.welcome()
-    b.date()
+    b.dates()
     b.month()
     b.batchInfo()
     c.trim()
