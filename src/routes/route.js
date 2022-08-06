@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/test-me', function (req, res) {
     res.send('hii,i am farine khan')
     a.welcome()
-    b.dates()
+    b.date()
     b.month()
     b.batchInfo()
     c.trim()
