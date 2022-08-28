@@ -1,5 +1,6 @@
 // const jwt = require("jsonwebtoken");
-// const userModel = require("../models/userModel");
+// //const userModel = require("../models/userModel");
+// const model=require("../models/newUserModel")
 
 // /*
 //   Read all the comments multiple times to understand why we are doing what we are doing in login api and getUserData api
@@ -17,7 +18,6 @@
 // const loginUser = async function (req, res) {
 //   let userName = req.body.emailId;
 //   let password = req.body.password;
-
 //   let user = await userModel.findOne({ emailId: userName, password: password });
 //   if (!user)
 //     return res.send({
@@ -43,6 +43,7 @@
 //   res.send({ status: true, token: token });
 // };
 
+
 // const getUserData = async function (req, res) {
 //   let token = req.headers["x-Auth-token"];
 //   if (!token) token = req.headers["x-auth-token"];
@@ -67,7 +68,7 @@
 //     return res.send({ status: false, msg: "token is invalid" });
 
 //   let userId = req.params.userId;
-//   let userDetails = await userModel.findById(userId);
+//   let userDetails = await model.findById(userId);
 //   if (!userDetails)
 //     return res.send({ status: false, msg: "No such user exists" });
 
