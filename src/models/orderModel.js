@@ -6,7 +6,6 @@ const SALES= new mongoose.Schema({
 	productId:mongoose.Schema.Types.ObjectId,
 	amount: Number,
 	isFreeAppUser: Boolean, 
-		
 	date: String
 
 }, { timestamps: true })

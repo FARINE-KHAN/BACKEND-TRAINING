@@ -9,7 +9,7 @@ const cm = require ("../middlewares/commonMiddlewares")
 
 router.post("/createProduct", productController.createProduct)
 router.post("/createUser",cm.mid1, userController.createUser)
-router.post("/createOrder",cm.mid1 , orderController.createOrder)
+router.post("/createOrder" ,cm.mid1, orderController.createOrder)
 
 
 

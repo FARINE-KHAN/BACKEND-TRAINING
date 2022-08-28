@@ -11,6 +11,4 @@ const mid1 = function (req, res, next) {
     } else if (!data) { res.send({ error: "isFreeAppUser mandatory" }) }
 }
 
-
-
 module.exports = { mid1 }
