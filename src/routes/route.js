@@ -6,8 +6,8 @@ const mw = require("../middleWare/auth")
 
 router.post('/createUser',controller.createUser)
 router.post('/loginUser',controller.login)
-router.get('/users/:userId',mw.mid,controller.validate)
-router.put('/users/:userId',mw.mid,controller.updation)
-router.delete('/users/:userId',mw.mid,controller.deletion)
+router.get('/users/:userId',mw.authenticate,mw.authorise,controller.validate)
+router.put('/users/:userId',mw.authorise,controller.updation)
+router.delete('/users/:userId',mw.authorise,controller.deletion)
 
 module.exports = router;

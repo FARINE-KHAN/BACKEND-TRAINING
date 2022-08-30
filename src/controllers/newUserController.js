@@ -34,9 +34,6 @@ catch(error){res.status(401).send({err:error.message})}
 
 const validate = async function (req, res) {
     try{
-    let token = req.headers["x-auth-token"]
-    let decodedToken = jwt.verify(token, "HAKUNAMATATA-NO-WORRIES;)");
-    if (!decodedToken) { return res.status(401).send({ err: "token is invalid" }) }
     let userId = req.params.userId;
     let userDetails = await model.findById(userId);
     res.status(200).send({ data: [userDetails,decodedToken ]});
