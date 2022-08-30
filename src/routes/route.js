@@ -10,5 +10,4 @@ router.get('/users/:userId',mw.mid,controller.validate)
 router.put('/users/:userId',mw.mid,controller.updation)
 router.delete('/users/:userId',mw.mid,controller.deletion)
 
-
 module.exports = router;

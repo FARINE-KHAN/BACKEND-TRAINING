@@ -1,18 +1,22 @@
 const model = require("../models/newUserModel")
 const jwt = require("jsonwebtoken")
 //------------------user detail-------------------//
+
 const createUser = async function (req, res) {
+    try{
     let enteredData = req.body
     let savedData = await model.create(enteredData)
-    res.send({ UserData: savedData })
-}
+    res.status(201).send({ UserData: savedData })
+}catch(error){res.status(400).send({err:error.message})}}
 
 //-------------------login and genetrating token-------------------//
+
 const login = async function (req, res) {
+    try{
     let user = req.body
     let logIn = await model.findOne({ emailId: user.emailId, password: user.password })
     if (!logIn) {
-        return res.send({ Oops: "!!incorrect password or emailId!!" })
+        return res.status(400).send ({Oops: "!!incorrect password or emailId!!" })
     }
     let token = jwt.sign(
         {
@@ -21,37 +25,41 @@ const login = async function (req, res) {
         },
         "HAKUNAMATATA-NO-WORRIES;)"
     );
-    res.send({ status: true, token: token });
+    res.status(201).send({ status: true, token: token });
 }
+catch(error){res.status(401).send({err:error.message})}
 
+}
 //---------------------------------validation---------------------------------------//
 
-
 const validate = async function (req, res) {
+    try{
     let token = req.headers["x-auth-token"]
     let decodedToken = jwt.verify(token, "HAKUNAMATATA-NO-WORRIES;)");
-    if (!decodedToken) { return res.send({ status: false, msg: "token is invalid" }) }
+    if (!decodedToken) { return res.status(401).send({ err: "token is invalid" }) }
     let userId = req.params.userId;
     let userDetails = await model.findById(userId);
-    if (!userDetails)
-        return res.send({ status: false, msg: "No such user exists" });
-    res.send({ status: true, data: [userDetails,decodedToken ]});
-}
+    res.status(200).send({ data: [userDetails,decodedToken ]});
+}catch(error){res.status(500).send(error.message)}}
 // -------------------------------attribute updation----------------------------------------//
 
-
 let updation = async function (req, res) {
+    try{
     let abc = req.params.userId
-    let updated = await model.findOneAndUpdate({ _id: abc }, { $set: { age: 23 } }, { new: true })
-    res.send({ "successfully updated": updated })
+    let userData = req.body;
+    let updated = await model.findOneAndUpdate({ _id: abc },userData)
+    res.status(205).send({ "successfully updated": updated })
+}catch(error){res.status(400).send({err:error.message})}
 }
-//-----------------------------------deletation---------------------------------------//
-
+//-----------------------------------deletion---------------------------------------//
+ 
 let deletion = async function (req, res) {
+    try{
     let xyz = req.params.userId
-    let deleted = await model.findOneAndUpdate({ _id: xyz }, { $set: { isDeleted: true } }, { new: true })
-    res.send({data:deleted})
-
+    let userData = req.body;
+    let deleted = await model.findOneAndUpdate({ _id: xyz },userData)
+    res.status(205).send({data:deleted})
+}catch(error){res.status(400).send({err:error.message})}
 }
 
 module.exports = { createUser, login, validate, updation, deletion }
