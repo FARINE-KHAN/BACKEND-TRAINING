@@ -1,0 +1,33 @@
+let arr=[50, 13, 2, 4, 3, 19]
+
+ let min = Math.min(...arr)
+let ind=[]
+for(let i=0;i<arr.length;i++){
+    if(min ==arr[i]){
+        ind.push(i)  }    }
+        console.log(ind)
+    if(ind.length==1){
+        console.log("-1") }
+let minI=[]
+for (let i=0;i<ind.length-1;i++){
+    minI.push(ind[i+1]-ind[i])
+}
+
+let value =Math.min(...minI)
+ console.log(value)
+
+// let mini = Math.min(...arr)
+// let ar2 =[]
+// for(let i in arr){
+//     if(arr[i]==mini){
+//         ar2.push(i)
+//     }else{
+//         console.log("-1")
+//     }
+// }
+// let minimum = Number.POSITIVE_INFINITY
+// for (let i =0;i<ar2.length;i++){
+//    if(ar2[i+1]-ar2[i]< minimum){
+//        minimum = ar2[i+1]-ar2[i]
+//    }
+// }console.log(minimum)
